@@ -1,0 +1,12 @@
+*DS_*
+
+dist
+.cache
+phpunit.xml
+
+pids
+logs
+
+node_modules
+npm-debug.log
+activite-d-article.zip
