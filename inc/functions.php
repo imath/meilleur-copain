@@ -125,7 +125,30 @@ function meilleur_copain_template_pack_container_classes( $class = '' ) {
 add_filter( 'bp_nouveau_get_container_classes', 'meilleur_copain_template_pack_container_classes' );
 
 /**
+ * Plugin's Updater.
  *
- * admin init éditer le contenu des pages pour '<!-- wp:meilleur-copain/placeholder {"align":"none"} /-->'
- * Changement de page, activation d'un composant etc..
+ * @since 1.0.0
  */
+function meilleur_copain_admin_updater() {
+    $db_version      = bp_get_option( '_meilleur_copain_version', 0 );
+    $current_version = meilleur_copain()->version;
+
+	if ( ! version_compare( $db_version, $current_version, '<' ) ) {
+		return;
+    }
+
+	if ( 0 === (int) $db_version ) {
+        $page_ids = bp_core_get_directory_page_ids();
+
+        foreach ( $page_ids as $page_id ) {
+            wp_update_post( array(
+                'ID'           => $page_id,
+                'post_content' => '<!-- wp:meilleur-copain/placeholder {"align":"none"} /-->',
+            ) );
+        }
+	}
+
+	// Update Plugin version.
+	bp_update_option( '_meilleur_copain_version', $current_version );
+}
+add_action( 'admin_init', 'meilleur_copain_admin_updater', 999 );
