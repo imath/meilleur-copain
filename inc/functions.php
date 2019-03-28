@@ -124,6 +124,44 @@ function meilleur_copain_template_pack_container_classes( $class = '' ) {
 }
 add_filter( 'bp_nouveau_get_container_classes', 'meilleur_copain_template_pack_container_classes' );
 
+function meilleur_copain_update_page( $args = array() ) {
+    $args = wp_parse_args( $args, array(
+        'ID'           => 0,
+        'post_content' => '<!-- wp:meilleur-copain/placeholder {"align":"none"} /-->',
+    ) );
+
+    if ( ! $args['ID'] ) {
+        return false;
+    }
+
+    return wp_update_post( $args );
+}
+
+function meilleur_copain_update_option( $old_value, $value ) {
+    $old_value = (array) $old_value;
+    $value     = (array) $value;
+    $changes   = array_diff( $value, $old_value );
+
+    if ( ! $changes ) {
+        return;
+    }
+
+    $pages = get_posts( array(
+        'numberposts' => -1,
+        'include'     => array_values( $changes ),
+        'post_type'   => 'page',
+    ) );
+
+    if ( $pages ) {
+        foreach ( $pages as $page ) {
+            if ( ! isset( $page->post_content ) || ! $page->post_content ) {
+                meilleur_copain_update_page( array( 'ID' => $page->ID ) );
+            }
+        }
+    }
+}
+add_action( 'update_option_bp-pages', 'meilleur_copain_update_option', 10, 2 );
+
 /**
  * Plugin's Updater.
  *
@@ -141,10 +179,7 @@ function meilleur_copain_admin_updater() {
         $page_ids = bp_core_get_directory_page_ids();
 
         foreach ( $page_ids as $page_id ) {
-            wp_update_post( array(
-                'ID'           => $page_id,
-                'post_content' => '<!-- wp:meilleur-copain/placeholder {"align":"none"} /-->',
-            ) );
+            meilleur_copain_update_page( array( 'ID' => $page_id ) );
         }
 	}
 
