@@ -60,8 +60,8 @@ function meilleur_copain_set_thumbnail( $html = '', $post_ID = 0, $post_thumbnai
 }
 
 function meilleur_copain_theme_compat() {
-    $bp               = buddypress();
-    $mc               = meilleur_copain();
+    $bp = buddypress();
+    $mc = meilleur_copain();
 
     if ( bp_is_group() ) {
         $bp_object = 'groups';
