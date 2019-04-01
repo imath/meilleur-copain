@@ -79,11 +79,11 @@ final class Meilleur_Copain {
 		$this->basename  = plugin_basename( $this->file );
 
 		// Path and URL
-		$this->dir                = plugin_dir_path( $this->file );
-		$this->url                = plugin_dir_url ( $this->file );
-		$this->js_url             = trailingslashit( $this->url . 'js' );
-		$this->assets_url         = trailingslashit( $this->url . 'assets' );
-        $this->inc_dir            = trailingslashit( $this->dir . 'inc' );
+		$this->dir         = plugin_dir_path( $this->file );
+		$this->url         = plugin_dir_url ( $this->file );
+		$this->js_url      = trailingslashit( $this->url . 'js' );
+		$this->assets_url  = trailingslashit( $this->url . 'assets' );
+        $this->inc_dir     = trailingslashit( $this->dir . 'inc' );
 
         $this->post = null;
 	}
@@ -97,6 +97,7 @@ final class Meilleur_Copain {
 		spl_autoload_register( array( $this, 'autoload' ) );
 
 		require $this->inc_dir . 'functions.php';
+		require $this->inc_dir . 'customize.php';
 	}
 
 	/**
