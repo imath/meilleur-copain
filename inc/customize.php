@@ -11,8 +11,14 @@
 defined( 'ABSPATH' ) || exit;
 
 function meilleur_copain_custom_css_option( $args = array() ) {
+	$custom_css = '';
+
+	if ( isset( $args['meilleur_copain_custom_css'] ) ) {
+		$custom_css = $args['meilleur_copain_custom_css'];
+	}
+
 	return array_merge( $args, array(
-		'meilleur_copain_custom_css' => '',
+		'meilleur_copain_custom_css' => $custom_css,
 	) );
 }
 add_filter( 'bp_after_nouveau_appearance_settings_parse_args', 'meilleur_copain_custom_css_option' );
@@ -34,7 +40,7 @@ function meilleur_copain_customizer_settings( $settings = array() ) {
         'bp_nouveau_appearance[meilleur_copain_custom_css]' => array(
 			'index'             => 'meilleur_copain_custom_css',
 			'capability'        => 'bp_moderate',
-			//'sanitize_callback' => 'strip_tags', @todo a function to sanitize a WP_Customize_Setting object.
+			'sanitize_callback' => 'meilleur_copain_sanitize_custom_css',
 			'transport'         => 'postMessage',
 			'type'              => 'option',
 		)
@@ -55,3 +61,10 @@ function meilleur_copain_customizer_controls( $controls = array() ) {
 	) );
 }
 add_filter( 'bp_nouveau_customizer_controls', 'meilleur_copain_customizer_controls' );
+
+function meilleur_copain_customize_preview_js() {
+	$mc = meilleur_copain();
+
+	wp_enqueue_script( 'meilleur-copain-customize', $mc->js_url . "/customize.js", array( 'customize-preview' ), $mc->version, true );
+}
+add_action( 'customize_preview_init', 'meilleur_copain_customize_preview_js' );

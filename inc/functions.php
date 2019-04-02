@@ -124,6 +124,42 @@ function meilleur_copain_template_pack_container_classes( $class = '' ) {
 }
 add_filter( 'bp_nouveau_get_container_classes', 'meilleur_copain_template_pack_container_classes' );
 
+/**
+ * Sanitizes Custom CSS option.
+ *
+ * @since 1.0.0
+ *
+ * @param  string $custom_css The style rules.
+ * @return string|WP_Error    The sanitized style rules or a WP Error object.
+ */
+function meilleur_copain_sanitize_custom_css( $custom_css = '' ) {
+    if ( preg_match( '#</?\w+#', $custom_css ) ) {
+        return new WP_Error( 'illegal_markup', __( 'Le balisage n’est pas permis', 'meilleur-copain' ) );
+    }
+
+    return $custom_css;
+}
+
+/**
+ * Render the Custom CSS styles for BuddyPress areas.
+ *
+ * @since 1.0.0
+ */
+function meilleur_copain_custom_css() {
+    if ( ! is_buddypress() ) {
+        return;
+    }
+
+    $styles = bp_nouveau_get_appearance_settings( 'meilleur_copain_custom_css' );
+	if ( ! $styles && ! is_customize_preview() ) {
+        return;
+    }
+
+    // Use `/* meilleur-copain */` delimiters in case another plugin is adding an inline style.
+    wp_add_inline_style( 'bp-nouveau', "/* meilleur-copain */\n" . strip_tags( $styles ) . "\n/* meilleur-copain */" );
+}
+add_action( 'bp_enqueue_scripts', 'meilleur_copain_custom_css', 100 );
+
 function meilleur_copain_update_page( $args = array() ) {
     $args = wp_parse_args( $args, array(
         'ID'           => 0,
