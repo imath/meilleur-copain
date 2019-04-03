@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Meilleur Copain
  * Plugin URI: https://imathi.eu/tag/meilleur-copain/
- * Description: Une collection d'amélioration pour BuddyPress.
+ * Description: Une collection d’amélioration pour BuddyPress.
  * Version: 1.0.0
  * Requires at least: 5.0
  * Tested up to: 5.2
@@ -94,34 +94,8 @@ final class Meilleur_Copain {
 	 * @since 1.0.0
 	 */
 	private function inc() {
-		spl_autoload_register( array( $this, 'autoload' ) );
-
 		require $this->inc_dir . 'functions.php';
 		require $this->inc_dir . 'customize.php';
-	}
-
-	/**
-	 * Class Autoload function
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  string $class The class name.
-	 */
-	public function autoload( $class ) {
-		$name = str_replace( '_', '-', strtolower( $class ) );
-
-		if ( false === strpos( $name, $this->domain ) ) {
-			return;
-		}
-
-		$path = $this->inc_dir . "classes/class-{$name}.php";
-
-		// Sanity check.
-		if ( ! file_exists( $path ) ) {
-			return;
-		}
-
-		require $path;
 	}
 }
 

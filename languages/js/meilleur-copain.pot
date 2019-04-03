@@ -3,10 +3,13 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Generator: babel-plugin-makepot\n"
 
-#: src/index.js:7
-msgid "BP Placeholder"
+#: src/index.js:10
+msgid ""
+"Cette page est réservée à l’affichage d’un composant de BuddyPress. Vous "
+"pouvez personnalisez l’alignement du contenu généré par ce composant grâce "
+"à la barre d’outils du bloc."
 msgstr ""
 
-#: src/index.js:9
-msgid "BuddyPress placeholder"
+#: src/index.js:8
+msgid "Emplacement BuddyPress"
 msgstr ""

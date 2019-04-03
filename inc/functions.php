@@ -28,8 +28,10 @@ function meilleur_copain_set_blocks_template() {
         return;
     }
 
-    $page     = (int) $_GET['post'];
-    $bp_pages = array_map( 'intval', wp_list_pluck( (array) buddypress()->pages, 'id' ) );
+    $bp        = buddypress();
+    $page      = (int) $_GET['post'];
+    $bp_pages  = array_map( 'intval', wp_list_pluck( (array) $bp->pages, 'id' ) );
+    $bp_labels = array_map( 'esc_html', wp_list_pluck( (array) $bp->pages, 'title', 'id' ) );
 
     if ( in_array( $page, $bp_pages, true ) ) {
         $page_object = get_post_type_object( 'page' );
@@ -41,6 +43,25 @@ function meilleur_copain_set_blocks_template() {
         );
 
         $page_object->template_lock = 'all';
+
+        // Pass the corresponding object's Buddicon to the Block
+        $dashicon_suffix = array_search( $page, $bp_pages );
+        if ( ! $dashicon_suffix ) {
+            $dashicon_suffix = 'buddypress-logo';
+        } elseif ( 'members' === $dashicon_suffix ) {
+            $dashicon_suffix = 'community';
+        }
+
+        // Pass the Label
+        $label = __( 'Composant BuddyPress inconnu', 'meilleur-copain' );
+        if ( isset( $bp_labels[ $page ] ) ) {
+            $label = $bp_labels[ $page ];
+        }
+
+        wp_localize_script( 'meilleur-copain-placeholder', 'meilleurCopainVars', array(
+            'placeholderIcon'  => sprintf( 'buddicons-%s', $dashicon_suffix ),
+            'placeholderLabel' => $label,
+        ) );
     }
 }
 add_action( 'load-page.php', 'meilleur_copain_set_blocks_template' );
