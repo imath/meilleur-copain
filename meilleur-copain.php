@@ -95,6 +95,11 @@ final class Meilleur_Copain {
 	 * @since 1.0.0
 	 */
 	private function inc() {
+		// Don't do anything if the site's config is not ready for it.
+		if ( ! function_exists( 'parse_blocks' ) || 'nouveau' !== get_option( '_bp_theme_package_id', '' ) ) {
+			return;
+		}
+
 		require $this->inc_dir . 'functions.php';
 		require $this->inc_dir . 'customize.php';
 	}
