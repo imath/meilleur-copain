@@ -58,7 +58,7 @@ zip -r meilleur-copain.zip \
 	dist \
     inc \
     languages \
-    meilleur-copain.php
+    meilleur-copain.php \
     README.md
 
 status "Done."
