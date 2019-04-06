@@ -11,15 +11,20 @@
 defined( 'ABSPATH' ) || exit;
 
 function meilleur_copain_register_placeholder_block() {
+    $mc = meilleur_copain();
+
     wp_register_script(
         'meilleur-copain-placeholder',
-        plugins_url( 'dist/index.js', dirname( __FILE__ ) ),
-		array( 'wp-element', 'wp-editor' )
+        $mc->js_url . 'placeholder-block/index.js',
+        array( 'wp-element', 'wp-editor' ),
+        $mc->version
 	);
 
 	register_block_type( 'meilleur-copain/placeholder', array(
         'editor_script' => 'meilleur-copain-placeholder',
-	) );
+    ) );
+
+    wp_set_script_translations( 'meilleur-copain-placeholder', 'meilleur-copain', meilleur_copain()->js_lang_dir );
 }
 add_action( 'init', 'meilleur_copain_register_placeholder_block' );
 
@@ -218,6 +223,17 @@ function meilleur_copain_update_option( $old_value, $value ) {
     }
 }
 add_action( 'update_option_bp-pages', 'meilleur_copain_update_option', 10, 2 );
+
+/**
+ * Loads translation.
+ *
+ * @since 1.0.0
+ */
+function meilleur_copain_load_textdomain() {
+	$mc = meilleur_copain();
+	load_plugin_textdomain( $mc->domain, false, trailingslashit( basename( $mc->dir ) ) . 'languages' );
+}
+add_action( 'bp_loaded', 'meilleur_copain_load_textdomain' );
 
 /**
  * Plugin's Updater.

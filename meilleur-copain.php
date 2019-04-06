@@ -11,7 +11,6 @@
  * Author URI: https://imathi.eu/
  * Text Domain: meilleur-copain
  * Domain Path: /languages/
- * Network: True
  * GitHub Plugin URI: https://github.com/imath/meilleur-copain/
  */
 
@@ -79,11 +78,13 @@ final class Meilleur_Copain {
 		$this->basename  = plugin_basename( $this->file );
 
 		// Path and URL
-		$this->dir         = plugin_dir_path( $this->file );
-		$this->url         = plugin_dir_url ( $this->file );
-		$this->js_url      = trailingslashit( $this->url . 'js' );
-		$this->assets_url  = trailingslashit( $this->url . 'assets' );
-        $this->inc_dir     = trailingslashit( $this->dir . 'inc' );
+		$this->dir          = plugin_dir_path( $this->file );
+		$this->url          = plugin_dir_url ( $this->file );
+		$this->js_url       = trailingslashit( $this->url . 'dist' );
+		$this->assets_url   = trailingslashit( $this->url . 'assets' );
+		$this->inc_dir      = trailingslashit( $this->dir . 'inc' );
+		$this->php_lang_dir = trailingslashit( $this->dir . 'languages' );
+		$this->js_lang_dir  = trailingslashit( $this->php_lang_dir . 'js' );
 
         $this->post = null;
 	}

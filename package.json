@@ -16,13 +16,9 @@
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-imagemin": "^3.1.0",
     "grunt-contrib-jshint": "~1.0.0",
-    "grunt-contrib-uglify": "~2.0.0",
-    "grunt-contrib-watch": "^1.1.0",
     "grunt-exec": "~1.0.1",
-    "grunt-git-archive": "~0.0.3",
     "grunt-jsvalidate": "~0.2.2",
     "grunt-legacy-util": "^1.1.1",
-    "grunt-minjson": "~0.4.0",
     "grunt-wp-i18n": "^1.0.2",
     "matchdep": "^2.0.0",
     "parcel-bundler": "^1.10.3",
@@ -32,9 +28,11 @@
     "node": "~10.13.0"
   },
   "scripts": {
-    "start": "parcel watch src/index.js",
-    "build": "parcel build src/index.js",
-    "translate": "po2json languages/js/meilleur-copain-en_US.po languages/js/meilleur-copain-en_US-meilleur-copain-placeholder.json -f jed"
+    "start": "parcel watch src/*/*.*",
+    "build": "parcel build src/*/*.*",
+    "jstranslate": "po2json languages/js/meilleur-copain-en_US.po languages/js/meilleur-copain-en_US-meilleur-copain-placeholder.json -f jed",
+    "jslint": "grunt jstest",
+    "phptranslate": "grunt translate"
   },
   "keywords": [
     "plugins",

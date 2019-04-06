@@ -1,0 +1,63 @@
+# Copyright (C) 2019 imath
+# This file is distributed under the GNU/GPL 2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Meilleur Copain 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/imath/meilleur-copain/issues\n"
+"POT-Creation-Date: 2019-04-06 07:30:54+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-04-06 09:50+0100\n"
+"Last-Translator: imath <contact@imathi.eu>\n"
+"Language-Team: FRENCH <contact@imathi.eu>\n"
+"X-Generator: Poedit 1.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_US\n"
+
+#: inc/customize.php:29
+msgid "Styles d’accompagnement"
+msgstr "Companion styles"
+
+#: inc/customize.php:32
+msgid ""
+"Ajouter des règles de style pour optimiser l’affichage des pages de "
+"BuddyPress."
+msgstr ""
+"Add style rules to tune in BuddyPress pages display within your theme."
+
+#: inc/customize.php:55
+msgid "Code CSS"
+msgstr "CSS code"
+
+#: inc/customize.php:56
+msgid "Les règles de style ne seront chargées que dans les pages BuddyPress"
+msgstr "Style rules will only be loaded in BuddyPress pages"
+
+#: inc/functions.php:59
+msgid "Composant BuddyPress inconnu"
+msgstr "Unknown BuddyPress component"
+
+#: inc/functions.php:161
+msgid "Le balisage n’est pas permis"
+msgstr "Markup is not allowed"
+
+#. Plugin Name of the plugin/theme
+msgid "Meilleur Copain"
+msgstr "Meilleur Copain"
+
+#. Plugin URI of the plugin/theme
+msgid "https://imathi.eu/tag/meilleur-copain/"
+msgstr "https://imathi.eu/tag/meilleur-copain/"
+
+#. Description of the plugin/theme
+msgid "Une collection d’amélioration pour BuddyPress."
+msgstr "Some improvements to BuddyPress."
+
+#. Author of the plugin/theme
+msgid "imath"
+msgstr "imath"
+
+#. Author URI of the plugin/theme
+msgid "https://imathi.eu/"
+msgstr "https://imathi.eu/"

@@ -65,6 +65,12 @@ add_filter( 'bp_nouveau_customizer_controls', 'meilleur_copain_customizer_contro
 function meilleur_copain_customize_preview_js() {
 	$mc = meilleur_copain();
 
-	wp_enqueue_script( 'meilleur-copain-customize', $mc->js_url . "/customize.js", array( 'customize-preview' ), $mc->version, true );
+	wp_enqueue_script(
+		'meilleur-copain-customize',
+		$mc->js_url . '/customize/index.js',
+		array( 'customize-preview' ),
+		$mc->version,
+		true
+	);
 }
 add_action( 'customize_preview_init', 'meilleur_copain_customize_preview_js' );
