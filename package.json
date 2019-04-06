@@ -32,7 +32,8 @@
     "build": "parcel build src/*/*.*",
     "jstranslate": "po2json languages/js/meilleur-copain-en_US.po languages/js/meilleur-copain-en_US-meilleur-copain-placeholder.json -f jed",
     "jslint": "grunt jstest",
-    "phptranslate": "grunt translate"
+    "phptranslate": "grunt translate",
+    "package-plugin": "./bin/package-zip.sh"
   },
   "keywords": [
     "plugins",
