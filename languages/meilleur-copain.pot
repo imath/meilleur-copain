@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Meilleur Copain 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/imath/meilleur-copain/issues\n"
-"POT-Creation-Date: 2019-04-06 07:30:54+00:00\n"
+"POT-Creation-Date: 2019-04-06 11:06:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,11 +31,11 @@ msgstr ""
 msgid "Les règles de style ne seront chargées que dans les pages BuddyPress"
 msgstr ""
 
-#: inc/functions.php:59
+#: inc/functions.php:71
 msgid "Composant BuddyPress inconnu"
 msgstr ""
 
-#: inc/functions.php:161
+#: inc/functions.php:211
 msgid "Le balisage n’est pas permis"
 msgstr ""
 
