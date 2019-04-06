@@ -10,6 +10,11 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Registers the BuddyPress Placeholder block.
+ *
+ * @since 1.0.0
+ */
 function meilleur_copain_register_placeholder_block() {
     $mc = meilleur_copain();
 
@@ -28,6 +33,11 @@ function meilleur_copain_register_placeholder_block() {
 }
 add_action( 'init', 'meilleur_copain_register_placeholder_block' );
 
+/**
+ * Sets the BuddyPress component's page blocks template and locks it.
+ *
+ * @since 1.0.0
+ */
 function meilleur_copain_set_blocks_template() {
     if ( ! isset( $_GET['post'] ) ) {
         return;
@@ -71,6 +81,19 @@ function meilleur_copain_set_blocks_template() {
 }
 add_action( 'load-page.php', 'meilleur_copain_set_blocks_template' );
 
+/**
+ * Restores the BuddyPress Component's page thumbnail.
+ *
+ * @since 1.0.0
+ *
+ * @param  string       $html              The post thumbnail HTML.
+ * @param  int          $post_ID           The post ID.
+ * @param  string       $post_thumbnail_id The post thumbnail ID.
+ * @param  string|array $size              The post thumbnail size. Image size or array of width and height
+ *                                         values (in that order). Default 'post-thumbnail'.
+ * @param  string       $attr              Query string of attributes.
+ * @return string                          The post thumbnail HTML.
+ */
 function meilleur_copain_set_thumbnail( $html = '', $post_ID = 0, $post_thumbnail_id = 0, $size = '', $attr = '' ) {
     // Prevent infinite loops.
     remove_filter( 'post_thumbnail_html', 'meilleur_copain_set_thumbnail' );
@@ -85,6 +108,11 @@ function meilleur_copain_set_thumbnail( $html = '', $post_ID = 0, $post_thumbnai
     return get_the_post_thumbnail( $mc->post, $size, $attr );
 }
 
+/**
+ * Waits for BP Theme Compatibility to set the BuddyPress Component's page thumbnail.
+ *
+ * @since 1.0.0
+ */
 function meilleur_copain_theme_compat() {
     $bp = buddypress();
     $mc = meilleur_copain();
@@ -112,6 +140,11 @@ function meilleur_copain_theme_compat() {
 }
 add_action( 'bp_setup_theme_compat', 'meilleur_copain_theme_compat', 100 );
 
+/**
+ * Gets a BuddyPress Component's page alignment attributes.
+ *
+ * @since 1.0.0
+ */
 function meilleur_copain_get_container_class() {
     $mc = meilleur_copain();
     $class = '';
@@ -136,9 +169,24 @@ function meilleur_copain_get_container_class() {
         }
     }
 
+    /**
+     * Filters the alignment class.
+     *
+     * @since 1.0.0
+     *
+     * @param string $class The alignement class.
+     */
     return apply_filters( 'meilleur_copain_get_container_class', $class );
 }
 
+/**
+ * Sets BP Nouveau main container alignment class.
+ *
+ * @since 1.0.0
+ *
+ * @param  string $class BP Nouveau main container space separated classes.
+ * @return string        BP Nouveau main container space separated classes.
+ */
 function meilleur_copain_template_pack_container_classes( $class = '' ) {
     $mc_class = meilleur_copain_get_container_class();
 
@@ -186,8 +234,17 @@ function meilleur_copain_custom_css() {
 }
 add_action( 'bp_enqueue_scripts', 'meilleur_copain_custom_css', 100 );
 
+/**
+ * Updates the BuddyPress Component's page content to a Placeholder block.
+ *
+ * @since 1.0.0
+ *
+ * @param array|object  $postarr  Optional. Post data. Arrays are expected to be escaped,
+ *                                objects are not. Default array.
+ * @return int|WP_Error           The value 0 or WP_Error on failure. The post ID on success.
+ */
 function meilleur_copain_update_page( $args = array() ) {
-    $args = wp_parse_args( $args, array(
+    $args = wp_parse_args( (array) $args, array(
         'ID'           => 0,
         'post_content' => '<!-- wp:meilleur-copain/placeholder {"align":"none"} /-->',
     ) );
@@ -199,6 +256,14 @@ function meilleur_copain_update_page( $args = array() ) {
     return wp_update_post( $args );
 }
 
+/**
+ * Listens to `bp-pages` option changes to eventually update the BuddyPress component's page content.
+ *
+ * @since 1.0.0
+ *
+ * @param  array $old_value The current value of the option.
+ * @param  array $value     The new value of the option.
+ */
 function meilleur_copain_update_option( $old_value, $value ) {
     $old_value = (array) $old_value;
     $value     = (array) $value;
