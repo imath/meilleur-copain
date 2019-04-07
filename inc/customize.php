@@ -74,3 +74,12 @@ function meilleur_copain_customize_preview_js() {
 	);
 }
 add_action( 'customize_preview_init', 'meilleur_copain_customize_preview_js' );
+
+function meilleur_copain_controls_enqueue_scripts() {
+	wp_add_inline_style( 'customize-controls', '
+		.customize-section-description-container + #customize-control-meilleur_copain_custom_css:last-child .CodeMirror {
+			height: calc( 100vh - 320px );
+		}
+	' );
+}
+add_action( 'customize_controls_enqueue_scripts', 'meilleur_copain_controls_enqueue_scripts' );
