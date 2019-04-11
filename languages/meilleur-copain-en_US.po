@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Meilleur Copain 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/imath/meilleur-copain/issues\n"
-"POT-Creation-Date: 2019-04-06 11:06:19+00:00\n"
-"PO-Revision-Date: 2019-04-06 13:06+0100\n"
+"POT-Creation-Date: 2019-04-11 02:58:46+00:00\n"
+"PO-Revision-Date: 2019-04-11 04:59+0100\n"
 "Last-Translator: imath <contact@imathi.eu>\n"
 "Language-Team: FRENCH <contact@imathi.eu>\n"
 "Language: en_US\n"
@@ -15,29 +15,29 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: inc/customize.php:29
+#: inc/customize.php:45
 msgid "Styles d’accompagnement"
 msgstr "Companion styles"
 
-#: inc/customize.php:32
+#: inc/customize.php:48
 msgid ""
 "Ajouter des règles de style pour optimiser l’affichage des pages de "
 "BuddyPress."
 msgstr "Add style rules to tune in BuddyPress pages display within your theme."
 
-#: inc/customize.php:55
+#: inc/customize.php:87
 msgid "Code CSS"
 msgstr "CSS code"
 
-#: inc/customize.php:56
+#: inc/customize.php:88
 msgid "Les règles de style ne seront chargées que dans les pages BuddyPress"
 msgstr "Style rules will only be loaded in BuddyPress pages"
 
-#: inc/functions.php:71
+#: inc/functions.php:80
 msgid "Composant BuddyPress inconnu"
 msgstr "Unknown BuddyPress component"
 
-#: inc/functions.php:211
+#: inc/functions.php:220
 msgid "Le balisage n’est pas permis"
 msgstr "Markup is not allowed"
 

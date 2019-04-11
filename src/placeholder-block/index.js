@@ -1,6 +1,6 @@
 const { createElement, Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
-const { BlockAlignmentToolbar, BlockControls } = wp.editor;
+const { BlockAlignmentToolbar, BlockControls } = wp.blockEditor || wp.editor;
 const { __ } = wp.i18n;
 const { Placeholder } = wp.components;
 

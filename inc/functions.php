@@ -18,10 +18,19 @@ defined( 'ABSPATH' ) || exit;
 function meilleur_copain_register_placeholder_block() {
     $mc = meilleur_copain();
 
+    $deps = array( 'wp-element', 'wp-editor' );
+    if ( function_exists( 'wp_body_open' ) ) {
+        /**
+         * Since WordPress 5.2.0 it's recommended to use the
+         * wp-block-editor dependency instead of wp-editor one.
+         */
+        $deps = array( 'wp-element', 'wp-block-editor' );
+    }
+
     wp_register_script(
         'meilleur-copain-placeholder',
         $mc->js_url . 'placeholder-block/index.js',
-        array( 'wp-element', 'wp-editor' ),
+        $deps,
         $mc->version
 	);
 
