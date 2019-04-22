@@ -36,8 +36,8 @@
     "package-plugin": "./bin/package-zip.sh"
   },
   "keywords": [
-    "plugins",
-    "repositories"
+    "buddypress",
+    "appearance"
   ],
   "homepage": "https://imathi.eu/tag/meilleur-copain",
   "license": "GPL-2.0+",
